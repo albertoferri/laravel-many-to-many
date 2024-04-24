@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Technology;
 use App\Http\Requests\StoreTechnologyRequest;
-use App\Http\Requests\UpdateTechnologyRequest;
 
 class TechnologyController extends Controller
 {
@@ -13,7 +12,9 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+        $technologies = Technology::all();
+
+        return view('technologies.index', compact('technologies'));
     }
 
     /**
@@ -21,7 +22,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        return view('technologies.create');
     }
 
     /**
@@ -37,7 +38,7 @@ class TechnologyController extends Controller
      */
     public function show(Technology $technology)
     {
-        //
+        return view('technologies.show', compact('technology'));
     }
 
     /**
@@ -45,7 +46,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        return view('technologies.edit', compact('technology'));
     }
 
     /**
@@ -61,6 +62,8 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        
+        return redirect()->route("technologies.index");
     }
 }
