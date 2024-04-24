@@ -37,7 +37,7 @@
                 @enderror
             </div>
 
-            {{-- <label for="" class="form-label">Skill</label>
+            <label for="" class="form-label">Skill</label>
             <div class="d-flex gap-4 mb-4 border border-1 rounded-2 p-1">
               @foreach ($technologies as $technology)
               <div class="form-check">
@@ -47,7 +47,7 @@
                 </label>
               </div>
               @endforeach
-            </div> --}}
+            </div>
 
             <div class="mb-4">
                 <label for="type_id" class="form-label">Tipologia</label>

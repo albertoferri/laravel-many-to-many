@@ -38,15 +38,40 @@
             </div>
 
             <label for="thumb" class="form-label">Skill</label>
-            <div class="d-flex gap-4 mb-4 border border-1 rounded-2 p-1">
-              @foreach ($technologies as $technology)
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{$technology->id}}" name="technologies[]" id="technology-{{$technology->id}}">
-                <label class="form-check-label" for="technology-{{$technology->id}}">
-                  {{$technology->title}}
-                </label>
-              </div>
-              @endforeach
+            <div class="d-flex gap-4 mb-4 border border-1 rounded-2 p-1">          
+              @foreach($technologies as $technology)
+                <div class="form-check ">
+
+                    {{-- controlliamo se sono presenti errori (stiamo probabilmente ricevendo dei parametri old() ) --}}
+                    @if($errors->any())
+
+                    {{-- se abbiamo errori e quindi old() --}}
+                    <input 
+                        type="checkbox" 
+                        name="technologies[]"
+                        value="{{$technology->id}}" 
+                        class="form-check-input" 
+                        id="technology-{{$technology->id}}"
+
+                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
+                    > 
+
+                    @else 
+                    {{-- se non abbiamo errori e quindi old() è nullo --}}
+                    <input 
+                        type="checkbox" 
+                        name="technologies[]"
+                        value="{{$technology->id}}" 
+                        class="form-check-input" 
+                        id="technology-{{$technology->id}}"
+
+                        {{ $project->technologies->contains($technology) ? 'checked' : '' }}
+                    > 
+                    @endif
+
+                    <label for="technology-{{$technology->id}}" class="form-check-label">{{$technology->title}}</label>
+                </div>
+                @endforeach
             </div>
 
             <div class="mb-4">

@@ -10,6 +10,11 @@
                       <h5 class="card-title">{{$project->name}}</h5>
                       <p class="card-text">{{$project->description}}</p>
                       <p class="card-text">{{$project->type->title}}</p>
+                      <div class="card-text d-flex gap-2 mb-3">
+                        @foreach ($project->technologies as $technology)
+                        <span class="badge rounded-pill" style="background-color: {{$technology->color}}">{{$technology->title}}</span>
+                        @endforeach
+                      </div>
                       <a class="btn btn-primary my-2" href="{{$project->git_url}}">APRI REPO</a><br>
 
                       <div class="d-flex gap-3">

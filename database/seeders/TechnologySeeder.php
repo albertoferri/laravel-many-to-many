@@ -13,12 +13,19 @@ class TechnologySeeder extends Seeder
      */
     public function run(): void
     {
-        $technologies = ['html', 'css', 'js', 'php', 'mysql'];
+        $technologies = [
+            'html' => '#e34c26',
+            'css' => '#264de4',
+            'js' => '#f0db4f',
+            'php' => '#8993be',
+            'mysql' => '#00758f'
+        ];
 
-        foreach($technologies as $technology){
+        foreach($technologies as $technology => $color){
             $newTech = new Technology();
 
             $newTech->title = $technology;
+            $newTech->color = $color;
 
             $newTech->save();
 

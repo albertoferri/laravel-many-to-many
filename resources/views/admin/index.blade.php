@@ -15,8 +15,11 @@
             <div class="card-body">
               <h5 class="card-title">{{$project->name}}</h5>
               <p class="card-text">{{$project->description}}</p>
-              <p class="card-text">{{$project->skill}}</p>
-              <p class="card-text">{{$project->git_url}}</p>
+              <div class="d-flex gap-2 mb-3">
+                @foreach ($project->technologies as $technology)
+                <span class="badge rounded-pill" style="background-color: {{$technology->color}}">{{$technology->title}}</span>
+                @endforeach
+              </div>
               <a href="{{route('project.show', $project->id)}}" class="btn btn-success fw-bold text-uppercase">maggiori informazioni</a>
             </div>
         </div>
