@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'name', 'description', 'skill', 'git_url','type_id'];
+    protected $fillable = [ 'name', 'description', 'git_url','type_id'];
 
     // aggiungiamo la possibilità di leggere le tabelle a lui collegate
     public function type():BelongsTo{
