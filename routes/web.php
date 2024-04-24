@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\TechnologyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,3 +55,6 @@ Route::resource('project', ProjectController::class)->middleware(['auth', 'verif
 
 // rotte per i types
 Route::resource('types', TypeController::class)->middleware(['auth', 'verified']);
+
+// rotte per i tech
+Route::resource('technologies', TechnologyController::class)->middleware(['auth', 'verified']);

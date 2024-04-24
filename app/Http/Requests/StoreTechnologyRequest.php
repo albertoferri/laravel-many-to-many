@@ -11,7 +11,7 @@ class StoreTechnologyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|max:30',
+            'color' => 'required'
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Inserisci un nome valido',
+            'title.max' => 'il titolo deve avere :max caratteri',
+            'color.required'=> 'inserisci un colore valido'
         ];
     }
 }
