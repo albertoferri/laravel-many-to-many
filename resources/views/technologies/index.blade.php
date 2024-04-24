@@ -6,6 +6,8 @@
 
     <h1>Tutte le tecnologie</h1>
 
+    <a href="{{route('technologies.create')}}" class="btn btn-primary fw-bold text-uppercase">crea</a>
+
     <table class="table">
         <thead>
           <tr>
@@ -20,7 +22,7 @@
 
             
             @foreach($technologies as $technology)
-            <tr>
+            <tr style="background-color: {{$technology->color}}">
                 <th scope="row">{{$loop->index + 1}}</th>
                 <td>{{$technology->title}}</td>
                 <td>{{$technology->color}}</td>
