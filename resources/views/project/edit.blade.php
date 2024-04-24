@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container py-5">
+        <h1 class="mb-4">MODIFICA IL PROGETTO</h1>
 
         <form action="{{ route('project.update', $project) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -28,22 +29,37 @@
         
             <div class="mb-3">
                 <label for="thumb" class="form-label">Immagine di copertina</label>
-                <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb" name="thumb">
+                <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb" name="thumb" {{old('thumb') ?? $project->thumb}}>
                 @error('thumb')
                 <div class="invalid-feedback">
                   {{$message}}
                 </div>
                 @enderror
             </div>
-        
-            <div class="mb-3">
-                <label for="skill" class="form-label">Tecnologie utilizzate</label>
-                <input type="text" class="form-control @error('skill') is-invalid @enderror" id="skill" name="skill" value="{{old('skill') ?? $project->skill}}">
-                @error('skill')
-                <div class="invalid-feedback">
-                  {{$message}}
-                </div>
-                @enderror
+
+            <label for="thumb" class="form-label">Skill</label>
+            <div class="d-flex gap-4 mb-4 border border-1 rounded-2 p-1">
+              @foreach ($technologies as $technology)
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{$technology->id}}" name="technologies[]" id="technology-{{$technology->id}}">
+                <label class="form-check-label" for="technology-{{$technology->id}}">
+                  {{$technology->title}}
+                </label>
+              </div>
+              @endforeach
+            </div>
+
+            <div class="mb-4">
+              <label for="type_id" class="form-label">Tipologia</label>
+              <select class="form-select" name="type_id" id="type_id">
+              
+                <option value=""></option>
+
+                @foreach ($types as $type)
+                <option value="{{$type->id}}" {{ $type->id == old('type_id') ? 'selected' : '' }}>{{ $type->title }}</option>
+                @endforeach
+
+              </select>
             </div>
         
             <div class="mb-3">

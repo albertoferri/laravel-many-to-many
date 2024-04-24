@@ -5,7 +5,8 @@
 <div class="container py-5">
 
     <h1>DASHBOARD DI AMMINISTRAZIONE</h1>
-    <a href="{{route('project.create')}}" class="btn btn-primary fw-bold text-uppercase">crea</a>
+    <a href="{{route('project.create')}}" class="btn btn-primary fw-bold text-uppercase">crea progetto</a>
+    <a href="{{route('types.create')}}" class="btn btn-info fw-bold text-uppercase">crea tipologia</a>
 
     <div class="row row-cols-3 py-3">
         @foreach ($projects as $project)

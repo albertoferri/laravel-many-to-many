@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use App\Http\Requests\StoreProjectRequest;
 use Illuminate\Support\Facades\Storage;
@@ -23,10 +24,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-
+        // prelevo le categorie dal db per passarle
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view("project.create", compact('types'));
+        return view("project.create", compact('types', 'technologies'));
     }
 
     /**
@@ -51,6 +53,9 @@ class ProjectController extends Controller
         
         $newProject->save();
 
+        $newProject->technologies()->attach($request->technologies);
+
+
         return redirect()->route("project.index");
     }
 
@@ -67,7 +72,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('project.edit', compact('project'));
+        $types = Type::all();
+        $technologies = Technology::all();
+
+        return view('project.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -80,6 +88,12 @@ class ProjectController extends Controller
 
 
         $project->update($request->all());
+
+        if($request->hasFile('thumb')){
+            // qui ci salviamo il percorso dell'immagine in una variabile e contemporanteamente salviamo l'immagine nel server
+            $path = Storage::disk('public')->put('project_image', $request->thumb);
+            $project->thumb = $path;
+        }
 
         $project->save();
         
