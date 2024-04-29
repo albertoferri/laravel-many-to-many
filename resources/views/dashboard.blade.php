@@ -25,8 +25,10 @@
         <hr class="mb-3">
         <hr class="mb-5">
 
-        <div class="col-12 offset-8">
+        <div class="d-flex justify-content-center gap-4">
             <a href="{{ route('admin.index') }}" class="btn btn-lg btn-outline-danger fw-bold" style="width: 300px;">PROGETTI</a>
+            <a href="{{ route('types.index') }}" class="btn btn-lg btn-outline-light fw-bold" style="width: 300px;">TIPOLOGIE</a>
+            <a href="{{ route('technologies.index')}}" class="btn btn-lg btn-outline-warning fw-bold" style="width: 300px;">SKILL</a>
         </div>
     </div>
 </div>

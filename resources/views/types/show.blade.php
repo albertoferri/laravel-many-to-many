@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-5">
-        <div class="row mb-5">
-            <div class="card mb-3">
+<div class="container py-5">
+        <a href="{{route('types.index')}}" class="btn btn-primary fw-bold text-uppercase text-uppercase">type-home</a>
+        <div class="row my-5">
+            <div class="card mb-3 px-0">
                 <div class="card-body">
                   <h5 class="card-title text-capitalize">{{$type->title}}</h5>
                   <p class="card-text">{{$type->description}}</p>
