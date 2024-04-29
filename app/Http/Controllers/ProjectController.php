@@ -96,6 +96,8 @@ class ProjectController extends Controller
         }
 
         $project->save();
+        // modifichiamo le tech collegate al progetto
+        $project->technologies()->sync($request->technologies);
         
         return redirect()->route('project.show', $project->id);
     }
